@@ -73,7 +73,7 @@ const ProfilePage = () => {
       return;
     }
     const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      mediaTypes: ImagePicker.MediaTypeOptions.Image,
       allowsEditing: true,
       aspect: [1, 1],
       quality: 1,
