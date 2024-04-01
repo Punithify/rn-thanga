@@ -13,9 +13,7 @@ import {
   Modal,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-// import * as ImagePicker from 'expo-image-picker';
 import { Picker } from '@react-native-picker/picker';
-import { ImageManipulator } from 'expo-image-manipulator';
 import * as ImagePicker from 'expo-image-picker/src/ImagePicker';
 import { Asset } from 'expo-asset';
 import { manipulateAsync, FlipType, SaveFormat } from 'expo-image-manipulator';
@@ -86,17 +84,12 @@ const ProfilePage = () => {
       if (result.assets[0].uri) {
         console.log('hello');
         try {
-          // const croppedImage = await ImageManipulator.manipulateAsync(
-          //   result.assets[0].uri,
-          //   [{ resize: { width: 200, height: 200 } }],
-          //   { compress: 1, format: ImageManipulator.SaveFormat.PNG }
-          // );
           const uri = result.assets[0].uri;
-          const croppedImage = await ImageManipulator.manipulateAsync(uri, [
-            {
-              rotate: 0,
-            },
-          ]);
+          const croppedImage = await manipulateAsync(
+            uri,
+            [{ resize: { width: 200, height: 200 } }],
+            { compress: 1, format: SaveFormat.PNG }
+          );
           setProfilePhoto({ uri: croppedImage.uri }); // Update the profile photo state with the cropped image URI
         } catch (error) {
           console.log(error);
